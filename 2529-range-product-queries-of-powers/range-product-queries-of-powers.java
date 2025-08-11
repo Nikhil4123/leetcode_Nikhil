@@ -12,7 +12,7 @@ class Solution {
         for (int row = 0; row < size; row++) {
             table[row][row] = powers.get(row);
             for (int col = row + 1; col < size; col++) {
-                table[row][col] = (int)((long)table[row][col - 1] * powers.get(col) % MOD);
+                table[row][col] = (int) ((long) table[row][col - 1] * powers.get(col) % MOD);
             }
         }
         int[] result = new int[queries.length];
