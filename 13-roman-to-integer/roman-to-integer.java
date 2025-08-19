@@ -1,35 +1,42 @@
 class Solution {
     public int romanToInt(String s) {
-        int result = 0;
-        int prevValue = 0;
+        int ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            int value = 0;
 
-        for (int i = s.length() - 1; i >= 0; i--) {
-            int currentValue = getValue(s.charAt(i));
-
-            // Check if the current value should be subtracted or added
-            if (currentValue < prevValue) {
-                result -= currentValue;
-            } else {
-                result += currentValue;
+            switch (ch) {
+                case 'I': value = 1; break;
+                case 'V': value = 5; break;
+                case 'X': value = 10; break;
+                case 'L': value = 50; break;
+                case 'C': value = 100; break;
+                case 'D': value = 500; break;
+                case 'M': value = 1000; break;
             }
 
-            // Update previous value for the next iteration
-            prevValue = currentValue;
-        }
+            // check next character for subtraction rule
+            if (i + 1 < s.length()) {
+                char nextCh = s.charAt(i + 1);
+                int nextVal = 0;
 
-        return result;
-    }
+                switch (nextCh) {
+                    case 'I': nextVal = 1; break;
+                    case 'V': nextVal = 5; break;
+                    case 'X': nextVal = 10; break;
+                    case 'L': nextVal = 50; break;
+                    case 'C': nextVal = 100; break;
+                    case 'D': nextVal = 500; break;
+                    case 'M': nextVal = 1000; break;
+                }
 
-    private int getValue(char c) {
-        switch (c) {
-            case 'I': return 1;
-            case 'V': return 5;
-            case 'X': return 10;
-            case 'L': return 50;
-            case 'C': return 100;
-            case 'D': return 500;
-            case 'M': return 1000;
-            default: return 0; // Handle invalid input
+                if (value < nextVal) {
+                    ans -= value; // subtract if smaller before bigger
+                    continue;
+                }
+            }
+            ans += value;
         }
+        return ans;
     }
 }
