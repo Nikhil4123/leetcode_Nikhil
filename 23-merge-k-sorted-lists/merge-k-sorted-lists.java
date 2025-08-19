@@ -10,28 +10,29 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) return null;
-        ListNode head=lists[0];
+        if(lists == null || lists.length ==0) return null;
+        ListNode head = lists[0];
         for(int i=1;i<lists.length;i++){
-            head=mearge2lists(head,lists[i]);
+            head=mearge2(head,lists[i]);
         }
         return head;
     }
-    public ListNode mearge2lists(ListNode l1 , ListNode l2){
-        ListNode dum=new ListNode(0);
-        ListNode hd=dum;
-        while(l1!=null && l2!=null){
-            if(l1.val<l2.val){
-                hd.next=l1;
-                l1=l1.next;
+    public ListNode mearge2(ListNode l1 , ListNode l2){
+        ListNode dummy = new ListNode(-1);
+        ListNode tl=dummy;
+        ListNode l1h=l1 , l2h=l2;
+        while(l1h!=null && l2h!=null){
+            if(l1h.val<l2h.val){
+                tl.next=l1h;
+                l1h=l1h.next;
             }else{
-                hd.next=l2;
-                l2=l2.next;
+                tl.next=l2h;
+                l2h=l2h.next; 
             }
-            hd=hd.next;
+            tl=tl.next;
         }
-        if(l1!=null) hd.next=l1;
-        if(l2!=null) hd.next=l2;
-        return dum.next;
+        if(l1h!=null) tl.next=l1h;
+        if(l2h!=null) tl.next=l2h;
+        return dummy.next;
     }
 }
