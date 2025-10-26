@@ -15,7 +15,7 @@
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre>
+<pre>. just to do the streak 
 <strong>Input:</strong> nums = [3,2,4], target = 6
 <strong>Output:</strong> [1,2]
 </pre>
