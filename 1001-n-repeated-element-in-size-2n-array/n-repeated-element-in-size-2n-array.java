@@ -1,15 +1,10 @@
 class Solution {
     public int repeatedNTimes(int[] nums) {
-        int a=nums.length/2;
-        HashMap<Integer , Integer> m = new HashMap<>();
-        for(int i : nums){
-            m.put(i,m.getOrDefault(i,0)+1);
-        }
-        for(Map.Entry<Integer , Integer> r : m.entrySet()){
-            if(r.getValue()==a){
-                return r.getKey();
+        for(int i = 0; i < nums.length - 2; i++) {
+            if(nums[i] == nums[i+1] || nums[i] == nums[i+2]) {
+                return nums[i];
             }
         }
-        return -1;
+        return nums[nums.length - 1];
     }
 }
